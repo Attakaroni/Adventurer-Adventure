@@ -13,6 +13,13 @@ pygame.init()
 WINDOW_SIZE = 768
 FPS = 64
 
+def play_music(track):
+    pygame.mixer.music.load(track)
+    pygame.mixer.play(-1)
+
+def stop_music():
+    pygame.mixer.music.stop()
+
 def update(game):
     pass
 
