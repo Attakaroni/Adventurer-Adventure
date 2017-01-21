@@ -13,6 +13,8 @@ pygame.init()
 WINDOW_SIZE = 768
 FPS = 64
 
+BLACK = (0, 0, 0)
+
 def play_music(track):
     pygame.mixer.music.load(track)
     pygame.mixer.play(-1)
@@ -31,10 +33,11 @@ def handle_events(game):
     pressed = pygame.key.get_pressed()
 
 def render(screen, game):
-    pass
+    screen.fill(game['background']['background_color'])
+    pygame.display.flip
 
 def reset():
-    game = {'mode': "Run"}
+    game = {'mode': "Run", 'background': {'background_color': BLACK}}
     return game
 
 def setup():
