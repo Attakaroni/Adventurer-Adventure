@@ -26,7 +26,7 @@ def update(game):
 def handle_events(game):
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            game['mode'} = "Quit"
+            game['mode'] = "Quit"
 
     pressed = pygame.key.get_pressed()
 
@@ -38,7 +38,7 @@ def reset():
     return game
 
 def setup():
-    screen = pygame.display.setmode((WINDOW_SIZE, WINDOW_SIZE))
+    screen = pygame.display.set_mode((WINDOW_SIZE, WINDOW_SIZE))
     pygame.display.set_caption("Adventurer Adventure")
     clock = pygame.time.Clock()
     game = reset()
