@@ -14,6 +14,12 @@ WINDOW_SIZE = 768
 FPS = 64
 
 BLACK = (0, 0, 0)
+WHITE = (255, 255, 255)
+
+ADVENTURER_IMAGE_FORWARD = pygame.image.load("adventurer_forward.png")
+ADVENTURER_IMAGE_LEFT = pygame.image.load("adventurer_left.png")
+ADVENTURER_IMAGE_BACK = pygame.image.load("adventurer_back_0.png")
+ADVENTURER_IMAGE_RIGHT = pygame.image.load("adventurer_right.png")
 
 def play_music(track):
     pygame.mixer.music.load(track)
@@ -32,12 +38,19 @@ def handle_events(game):
 
     pressed = pygame.key.get_pressed()
 
+def display(screen, image, hitbox):
+    screen.blit(image, hitbox)
+
 def render(screen, game):
-    screen.fill(game['background']['background_color'])
-    pygame.display.flip
+    screen.fill(game['background']['color'])
+    rect = pygame.Rect(game['adventurer']['x'] - game['adventurer']['x_size'] / 2, game['adventurer']['x_size'], game['adventurer']['y'] - game['adventurer']['y_size'] / 2, game['adventurer'])
+    display(screen, game['adventurer']['image']['back'], rect)
+    pygame.display.flip 
 
 def reset():
-    game = {'mode': "Run", 'background': {'background_color': BLACK}}
+    game = {'mode': "Run", 'background': {'color': BLACK},
+            'adventurer': {'x_size': 32, 'y_size': 32, 'x': 0, 'y': 0,
+                           'image': {'forward': ADVENTURER_IMAGE_FORWARD, 'left': ADVENTURER_IMAGE_FORWARD, 'back': ADVENTURER_IMAGE_BACK, 'right': ADVENTURER_IMAGE_RIGHT}}}
     return game
 
 def setup():
