@@ -42,6 +42,7 @@ def display(screen, image, hitbox):
     screen.blit(image, hitbox)
 
 def render(screen, game):
+<<<<<<< HEAD
     screen.fill(game['background']['color'])
     rect = pygame.Rect(game['adventurer']['x'] - game['adventurer']['x_size'] / 2, game['adventurer']['x_size'], game['adventurer']['y'] - game['adventurer']['y_size'] / 2, game['adventurer'])
     display(screen, game['adventurer']['image']['back'], rect)
@@ -51,6 +52,22 @@ def reset():
     game = {'mode': "Run", 'background': {'color': BLACK},
             'adventurer': {'x_size': 32, 'y_size': 32, 'x': 0, 'y': 0,
                            'image': {'forward': ADVENTURER_IMAGE_FORWARD, 'left': ADVENTURER_IMAGE_FORWARD, 'back': ADVENTURER_IMAGE_BACK, 'right': ADVENTURER_IMAGE_RIGHT}}}
+=======
+    screen.fill(game['background']['background_color'])
+    #pygame.display.flip()
+
+    tilesize = 10
+    roomsize = len(game['room'])
+    for y, row in enumerate(game['room']):
+        for x, cell in enumerate(game['room'][y]):
+            if cell or True:
+                pygame.draw.rect(screen, (abs(x-roomsize)/roomsize*255, abs(y-roomsize)/roomsize*255, abs(x-y)/roomsize*255), (tilesize * x, tilesize * y, tilesize, tilesize))
+    pygame.display.flip()
+                
+
+def reset():
+    game = {'mode': "Run", 'background': {'background_color': BLACK}, 'room': generate_room(30)}
+>>>>>>> origin/master
     return game
 
 def setup():
@@ -72,6 +89,22 @@ def main():
         render(screen, game)
         clock.tick(FPS)
     unsetup()
+
+def generate_room(dim):# dim: dimensions of room
+    room = [0] * dim
+    for y in range(0,dim):
+        room[y] = [0] * dim
+        for x in range(0,dim):
+            room[y][x] = 0
+    for i in range(0,dim):
+        room[0][i] = 1
+        room[-1][i] = 1
+        room[i][0] = 1
+        room[i][-1] = 1
+        
+    for i in range(0,dim):
+        print(room[i])
+    return room
 
 try:
     main()
